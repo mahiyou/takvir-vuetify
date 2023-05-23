@@ -7,9 +7,9 @@
         </div>
         <div class="text-align-center">
           <a
-          v-for="n in surahNums"
-          :key="n"
-            href="#"
+            v-for="n in surahNums"
+            :key="n"
+            :href="'/surah/' + n"
             variant="text"
             class="font-weight-medium quick-linck-font-size surah-link"
             :class="'icon-surah' + n"
@@ -20,9 +20,11 @@
         <div class="text-grey-darken-1 font-weight-bold text-body-2 mb-3">
           شماره صفحه
         </div>
-        <select class="ql-select ql-select-style form-control">
-          <option :value="index" data-href="#" v-for="index in 603" :key="index">
-            {{ persianNumber(index) }}
+        <select class="ql-select ql-select-style form-control"  v-model="selected">
+          <option :value="index" v-for="index in 603" :key="index">
+            <v-bt>
+              {{ persianNumber(index) }}
+            </v-bt>
           </option>
         </select>
       </v-col>
@@ -37,17 +39,17 @@
   .quick-linck-font-size {
     font-size: 1.7rem;
   }
-  .surah-link{
+  .surah-link {
     text-decoration: none;
     display: inline-block;
     line-height: 50px;
     margin-right: 20px;
     color: #2ca4ab;
-    &:hover{
+    &:hover {
       color: #337ab7;
     }
   }
-  .text-align-center{
+  .text-align-center {
     text-align: center;
   }
   .ql-select-style {
@@ -56,34 +58,52 @@
     border-radius: 4px;
     padding: 8px;
   }
-  .ql-select{
+  .ql-select {
     appearance: auto;
     font-size: 0.9rem;
-    &:focus{
+    &:focus {
       border-color: #66afe9;
       outline: 0;
-      -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, 0.6);
-      box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, 0.6);
+      -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075),
+        0 0 8px rgba(102, 175, 233, 0.6);
+      box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075),
+        0 0 8px rgba(102, 175, 233, 0.6);
     }
   }
 }
-
 </style>
-<script lang="ts" setup>
-const surahNums = [1, 45, 69, 100, 44, 5, 34];
+<script>
 
-function persianNumber(n) {
-  n = n.toString();
-  const nlength = n.length;
-  const farsiNum = ["۰", "۱", "۲", "۳", "۴", "۵", "۶", "۷", "۸", "۹"];
+import { defineComponent } from "vue";
 
-  for (let i = 0; i < 10; i++) {
-    for (let j = 0; j < nlength; j++) {
-      const istring = i.toString();
-      n = n.replace(istring, farsiNum[i]);
+export default defineComponent({
+  data() {
+    return {
+      surahNums: [1, 45, 2, 100, 44, 5, 34],
+      selected: ''
+    };
+  },
+  methods: {
+    persianNumber(n) {
+      n = n.toString();
+      const nlength = n.length;
+      const farsiNum = ["۰", "۱", "۲", "۳", "۴", "۵", "۶", "۷", "۸", "۹"];
+
+      for (let i = 0; i < 10; i++) {
+        for (let j = 0; j < nlength; j++) {
+          const istring = i.toString();
+          n = n.replace(istring, farsiNum[i]);
+        }
+      }
+      return n;
+    },
+  },
+  watch:{
+    selected(newVal){
+      console.log(newVal)
+      this.$router.push(`/page/${newVal}`)
     }
   }
 
-  return n;
-}
+});
 </script>

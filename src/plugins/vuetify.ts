@@ -23,9 +23,19 @@ export default createVuetify({
           secondary: '#5CBBF6',
           /* My custom colors */
           mygreen: "#2ca4ab",
-          footercolor: "#32312c"
+          footercolor: "#32312c",
+
+
         },
       },
+      // dark:{
+      //   colors: {
+        
+
+
+      //   }
+      // }
     },
+    
   },
 })

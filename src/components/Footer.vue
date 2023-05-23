@@ -1,5 +1,5 @@
 <template>
-  <v-footer class="bg-footercolor">
+  <v-footer class="bg-footercolor" height="200px">
     <v-container class="footer-container">
       <v-row justify="center" no-gutters>
         <v-col md="3" xs="12" class="text-center">
@@ -22,7 +22,7 @@
             <v-btn
               variant="text"
               class="footer-options-style"
-              href="#"
+              href="/api"
               v-bind="props"
               :color="isHovering ? 'mygreen' : 'white'"
             >
@@ -36,7 +36,7 @@
             <v-btn
               variant="text"
               class="footer-options-style"
-              href="#"
+              href="/contact-us"
               v-bind="props"
               :color="isHovering ? 'mygreen' : 'white'"
             >
@@ -102,6 +102,3 @@
   font-family: nazanin;
 }
 </style>
-
-<script>
-</script>

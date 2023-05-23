@@ -4,30 +4,24 @@
       <Toolbar v-model:collapsToggle="collapsToggle" />
       <CollapsMenu :collapsToggle="collapsToggle" />
       <Header />
-      <QuickLinkPart />
-      <MainMenu />
+      <ContactForm />
       <Footer />
     </v-app>
   </v-locale-provider>
 </template>
-  
-  
-  <script>
+<script>
 import Toolbar from "@/components/Toolbar.vue";
 import Header from "@/components/Header.vue";
-import MainMenu from "@/components/MainMenu.vue";
+import ContactForm from "@/components/ContactForm.vue";
 import Footer from "@/components/Footer.vue";
-import QuickLinkPart from "@/components/QuickLinkPart.vue";
 import CollapsMenu from "@/components/CollapsMenu.vue";
 import { defineComponent } from "vue";
-
 export default defineComponent({
   components: {
     Toolbar,
     Header,
-    MainMenu,
+    ContactForm,
     Footer,
-    QuickLinkPart,
     CollapsMenu,
   },
   data() {
@@ -39,4 +33,3 @@ export default defineComponent({
   },
 });
 </script>
-  

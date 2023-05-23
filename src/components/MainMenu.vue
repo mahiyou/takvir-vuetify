@@ -2,6 +2,7 @@
   <v-container class="main-menue-container">
     <div class="mb-6 text-grey-lighten-1 font-weight-medium">سوره ها</div>
     <v-row>
+      
       <v-col md="4" cols="12">
         <v-btn
           block
@@ -11,6 +12,7 @@
           v-for="index in 38"
           :key="index"
           :class="'icon-surah' + index"
+          :href="'/surah/'+ index"
         >
           <p class="text-grey-lighten-1 text-button ml-5">
             {{ persianNumber(index) }}
@@ -26,6 +28,7 @@
           v-for="index in 38"
           :key="index"
           :class="'icon-surah' + (index + 38)"
+          :href="'/surah/'+ (index + 38)"
         >
           <p class="text-grey-lighten-1 text-button ml-5">
             {{ persianNumber(index + 38) }}
@@ -41,6 +44,7 @@
           v-for="index in 38"
           :key="index"
           :class="'icon-surah' + (index + 76)"
+          :href="'/surah/'+ (index + 76)"
         >
           <p class="text-grey-lighten-1 text-button ml-5">
             {{ persianNumber(index + 76) }}
