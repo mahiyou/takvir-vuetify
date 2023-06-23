@@ -4,7 +4,21 @@
  * Configures SASS variables and Vuetify overwrites
  */
 
-// https://next.vuetifyjs.com/features/sass-variables/`
-// @use 'vuetify' with (
-//   $color-pack: false
-// );
+// https://next.vuetifyjs.com/features/sass-variables/
+@use 'vuetify' with (
+    $typography: (
+        'h1': ('letter-spacing': 0),
+        'h2': ('letter-spacing': 0),
+        'h3': ('letter-spacing': 0),
+        'h4': ('letter-spacing': 0),
+        'h5': ('letter-spacing': 0),
+        'h6': ('letter-spacing': 0),
+        'subtitle-1': ('letter-spacing': 0),
+        'subtitle-2': ('letter-spacing': 0),
+        'body-1': ('letter-spacing': 0),
+        'body-2': ('letter-spacing': 0),
+        'button': ('letter-spacing': 0),
+        'caption': ('letter-spacing': 0),
+        'overline': ('letter-spacing': 0),
+    )
+);
