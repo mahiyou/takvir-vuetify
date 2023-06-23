@@ -1,36 +1,36 @@
 <template>
-  <v-container class="quick-linck-container">
-    <v-row>
-      <v-col md="8" cols="12">
-        <div class="mb-4 text-grey-lighten-1 font-weight-medium">
-          لینک های سریع
-        </div>
-        <div class="text-align-center">
-          <a
-            v-for="n in surahNums"
-            :key="n"
-            :href="'/surah/' + n"
-            variant="text"
-            class="font-weight-medium quick-linck-font-size surah-link"
-            :class="'icon-surah' + n"
-          ></a>
-        </div>
-      </v-col>
-      <v-col md="4" cols="12">
-        <div class="text-grey-darken-1 font-weight-bold text-body-2 mb-3">
-          شماره صفحه
-        </div>
-        <select class="ql-select ql-select-style form-control"  v-model="selected">
-          <option :value="index" v-for="index in 603" :key="index">
-            <v-bt>
-              {{ persianNumber(index) }}
-            </v-bt>
-          </option>
-        </select>
-      </v-col>
-      <v-divider></v-divider>
-    </v-row>
-  </v-container>
+    <v-container class="quick-linck-container">
+        <v-row>
+            <v-col md="8" cols="12">
+                <div class="mb-4 text-grey-lighten-1 font-weight-medium">
+                    لینک های سریع
+                </div>
+                <div class="text-align-center">
+                    <a
+                        v-for="n in surahNums"
+                        :key="n"
+                        :href="'/surah/' + n"
+                        variant="text"
+                        class="font-weight-medium quick-linck-font-size surah-link"
+                        :class="'icon-surah' + n"
+                    ></a>
+                </div>
+            </v-col>
+            <v-col md="4" cols="12">
+                <div class="text-grey-darken-1 font-weight-bold text-body-2 mb-3">
+                    شماره صفحه
+                </div>
+                <select class="ql-select ql-select-style form-control"  v-model="selected">
+                    <option :value="index" v-for="index in 603" :key="index">
+                        <v-bt>
+                            {{ persianNumber(index) }}
+                        </v-bt>
+                    </option>
+                </select>
+            </v-col>
+            <v-divider></v-divider>
+        </v-row>
+    </v-container>
 </template>
 <style lang="scss">
 .quick-linck-container {
@@ -77,33 +77,33 @@
 import { defineComponent } from "vue";
 
 export default defineComponent({
-  data() {
-    return {
-      surahNums: [1, 45, 2, 100, 44, 5, 34],
-      selected: ''
-    };
-  },
-  methods: {
-    persianNumber(n) {
-      n = n.toString();
-      const nlength = n.length;
-      const farsiNum = ["۰", "۱", "۲", "۳", "۴", "۵", "۶", "۷", "۸", "۹"];
-
-      for (let i = 0; i < 10; i++) {
-        for (let j = 0; j < nlength; j++) {
-          const istring = i.toString();
-          n = n.replace(istring, farsiNum[i]);
-        }
-      }
-      return n;
+    data() {
+        return {
+            surahNums: [1, 45, 2, 100, 44, 5, 34],
+            selected: ''
+        };
     },
-  },
-  watch:{
-    selected(newVal){
-      console.log(newVal)
-      this.$router.push(`/page/${newVal}`)
+    methods: {
+        persianNumber(n) {
+            n = n.toString();
+            const nlength = n.length;
+            const farsiNum = ["۰", "۱", "۲", "۳", "۴", "۵", "۶", "۷", "۸", "۹"];
+
+            for (let i = 0; i < 10; i++) {
+                for (let j = 0; j < nlength; j++) {
+                    const istring = i.toString();
+                    n = n.replace(istring, farsiNum[i]);
+                }
+            }
+            return n;
+        },
+    },
+    watch:{
+        selected(newVal){
+            console.log(newVal);
+            this.$router.push(`/page/${newVal}`);
+        }
     }
-  }
 
 });
 </script>

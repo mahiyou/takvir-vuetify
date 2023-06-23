@@ -1,170 +1,170 @@
 <template>
-  <div id="mySidebar" class="sidebar">
-    <v-container class="side-bar-container">
-      <div>
-        <span class="title">تنظیمات</span>
-        <a @click="closeNav()" class="closebtn">×</a>
-      </div>
-      <v-divider class="mt-10 mb-3"></v-divider>
+    <div id="mySidebar" class="sidebar">
+        <v-container class="side-bar-container">
+            <div>
+                <span class="title">تنظیمات</span>
+                <a @click="closeNav()" class="closebtn">×</a>
+            </div>
+            <v-divider class="mt-10 mb-3"></v-divider>
 
-      <a href="" class="btns-style"
-        ><v-icon class="ml-3">mdi-information</v-icon>مشخصات سوره
-      </a>
-      <a href="#"  class="btns-style" @click="toggleTheme" 
-        ><v-icon class="ml-3">mdi-lightbulb</v-icon>حالت شب</a
-      >
+            <a href="" class="btns-style"
+            ><v-icon class="ml-3">mdi-information</v-icon>مشخصات سوره
+            </a>
+            <a href="#"  class="btns-style" @click="toggleTheme" 
+            ><v-icon class="ml-3">mdi-lightbulb</v-icon>حالت شب</a
+            >
 
-      <v-expansion-panels>
-        <v-expansion-panel :elevation="0" class="expansion-panel-style m-0">
-          <v-expansion-panel-title
-            expand-icon=""
-            collapse-icon=""
-            class="pr-2 expansion-panel-title"
-          >
-            <v-icon class="ml-3">mdi-microphone</v-icon>
-            قاری
-          </v-expansion-panel-title>
-          <v-expansion-panel-text class="radio-style">
-            <form>
-              <div v-for="n in qaries.items.qaries.length" :key="n" class="mb-3">
-                <input type="radio" name="fav_language" @click="updateQari(qaries.items.qaries[n-1].id)"/><label
-                  class="mr-3 small-font"
-                  >{{ qaries.items.qaries[n-1].name_fa }}</label
-                ><br />
-              </div>
-            </form>
-          </v-expansion-panel-text>
-        </v-expansion-panel>
-      </v-expansion-panels>
-      <v-row>
-        <v-col cols="10">
-          <v-expansion-panels :disabled="!disabled">
-            <v-expansion-panel class="expansion-panel-style m-0" :elevation="0">
-              <v-expansion-panel-title
-                expand-icon=""
-                collapse-icon=""
-                class="pr-2 expansion-panel-title"
-              >
-                <v-icon class="ml-3">mdi-volume-high</v-icon>
-                صوت ترجمه
-              </v-expansion-panel-title>
-              <v-expansion-panel-text class="radio-style">
-                <form>
-                  <div v-for="n in qaries.items.translations.length" :key="n" class="mb-3">
-                    <input type="radio" name="fav_language" :disabled = "!disabled" 
-                    v-if ="disabled"  @click="updateTranslation(qaries.items.translations[n-1].id)"
-                    /><label
-                      class="mr-3 small-font"
-                      >{{ qaries.items.translations[n-1].name_fa }}</label
-                    ><br />
-                  </div>
-                </form>
-              </v-expansion-panel-text>
-            </v-expansion-panel>
+            <v-expansion-panels>
+                <v-expansion-panel :elevation="0" class="expansion-panel-style m-0">
+                    <v-expansion-panel-title
+                        expand-icon=""
+                        collapse-icon=""
+                        class="pr-2 expansion-panel-title"
+                    >
+                        <v-icon class="ml-3">mdi-microphone</v-icon>
+                        قاری
+                    </v-expansion-panel-title>
+                    <v-expansion-panel-text class="radio-style">
+                        <form>
+                            <div v-for="n in qaries.items.qaries.length" :key="n" class="mb-3">
+                                <input type="radio" name="fav_language" @click="updateQari(qaries.items.qaries[n-1].id)"/><label
+                                    class="mr-3 small-font"
+                                >{{ qaries.items.qaries[n-1].name_fa }}</label
+                                ><br />
+                            </div>
+                        </form>
+                    </v-expansion-panel-text>
+                </v-expansion-panel>
+            </v-expansion-panels>
+            <v-row>
+                <v-col cols="10">
+                    <v-expansion-panels :disabled="!disabled">
+                        <v-expansion-panel class="expansion-panel-style m-0" :elevation="0">
+                            <v-expansion-panel-title
+                                expand-icon=""
+                                collapse-icon=""
+                                class="pr-2 expansion-panel-title"
+                            >
+                                <v-icon class="ml-3">mdi-volume-high</v-icon>
+                                صوت ترجمه
+                            </v-expansion-panel-title>
+                            <v-expansion-panel-text class="radio-style">
+                                <form>
+                                    <div v-for="n in qaries.items.translations.length" :key="n" class="mb-3">
+                                        <input type="radio" name="fav_language" :disabled = "!disabled" 
+                                               v-if ="disabled"  @click="updateTranslation(qaries.items.translations[n-1].id)"
+                                        /><label
+                                            class="mr-3 small-font"
+                                        >{{ qaries.items.translations[n-1].name_fa }}</label
+                                        ><br />
+                                    </div>
+                                </form>
+                            </v-expansion-panel-text>
+                        </v-expansion-panel>
             
 
-          </v-expansion-panels>
-        </v-col>
-        <v-col cols="2">
-          <div>
-            <input class="mt-6" type="checkbox" v-model="disabled" @click="updateTranslation(0)"/>
-          </div>
-        </v-col>
-      </v-row>
+                    </v-expansion-panels>
+                </v-col>
+                <v-col cols="2">
+                    <div>
+                        <input class="mt-6" type="checkbox" v-model="disabled" @click="updateTranslation(0)"/>
+                    </div>
+                </v-col>
+            </v-row>
 
-      <div>
-        <p class="font-btn-style mt-6">اندازه ی فونت</p>
-        <v-row>
-          <v-col cols="4" class="pt-6 pb-1"
-            ><v-btn variant="text" class="font-btn-options2" @click="onPlusAyeh">+</v-btn></v-col
-          >
-          <v-col cols="4" class="font-btn-options pt-6 pb-1">آیه</v-col>
-          <v-col cols="4" class="pt-6 pb-1"
-            ><v-btn variant="text" class="font-btn-options2" @click="onMinusAyeh">-</v-btn></v-col
-          >
-        </v-row>
-        <v-row>
-          <v-col cols="4" class="py-0"
-            ><v-btn variant="text" class="font-btn-options2" @click="onPlusMeaning">+</v-btn></v-col
-          >
-          <v-col cols="4" class="font-btn-options py-0">ترجمه</v-col>
-          <v-col cols="4" class="py-0"
-            ><v-btn variant="text" class="font-btn-options2" @click="onMinusMeaning">-</v-btn></v-col
-          >
-        </v-row>
-      </div>
-    </v-container>
-  </div>
+            <div>
+                <p class="font-btn-style mt-6">اندازه ی فونت</p>
+                <v-row>
+                    <v-col cols="4" class="pt-6 pb-1"
+                    ><v-btn variant="text" class="font-btn-options2" @click="onPlusAyeh">+</v-btn></v-col
+                    >
+                    <v-col cols="4" class="font-btn-options pt-6 pb-1">آیه</v-col>
+                    <v-col cols="4" class="pt-6 pb-1"
+                    ><v-btn variant="text" class="font-btn-options2" @click="onMinusAyeh">-</v-btn></v-col
+                    >
+                </v-row>
+                <v-row>
+                    <v-col cols="4" class="py-0"
+                    ><v-btn variant="text" class="font-btn-options2" @click="onPlusMeaning">+</v-btn></v-col
+                    >
+                    <v-col cols="4" class="font-btn-options py-0">ترجمه</v-col>
+                    <v-col cols="4" class="py-0"
+                    ><v-btn variant="text" class="font-btn-options2" @click="onMinusMeaning">-</v-btn></v-col
+                    >
+                </v-row>
+            </div>
+        </v-container>
+    </div>
 </template>
 
 <script>
 
-import { useTheme } from 'vuetify'
+import { useTheme } from 'vuetify';
 export default {
-  setup () {
-    const theme = useTheme()
+    setup () {
+        const theme = useTheme();
 
-    return {
-      theme,
-      toggleTheme(){
-        theme.global.name.value = theme.global.current.value.dark ? 'light' : 'dark'
-       }
+        return {
+            theme,
+            toggleTheme(){
+                theme.global.name.value = theme.global.current.value.dark ? 'light' : 'dark';
+            }
       
-    }
-  },
+        };
+    },
 
-  props: {
-    modelValueAye: {
-      type: Number,
-      required: true
-    },
-    modelValueMeaning: {
-      type: Number,
-      required: true
-    },
-    qaries: {
-      type: Object,
-      required: true
-    },
-    qariId:{
-      type: Number,
-      required: true
-    },
-    translationId:{
-      type:Number,
-      required: true
-    }
+    props: {
+        modelValueAye: {
+            type: Number,
+            required: true
+        },
+        modelValueMeaning: {
+            type: Number,
+            required: true
+        },
+        qaries: {
+            type: Object,
+            required: true
+        },
+        qariId:{
+            type: Number,
+            required: true
+        },
+        translationId:{
+            type:Number,
+            required: true
+        }
 
-  },
-  data() {
-    return {
-      disabled: false,
-    };
-  },
-  emits: ['update:modelValueAye','modelValueMeaning','qariId','translationId'],
-  methods: {
-    closeNav() {
-      document.getElementById("mySidebar").style.width = "0";
     },
-    onPlusAyeh() {
-      this.$emit("update:modelValueAye", this.modelValueAye + 1);
+    data() {
+        return {
+            disabled: false,
+        };
     },
-    onMinusAyeh() {
-      this.$emit("update:modelValueAye", this.modelValueAye - 1);
+    emits: ['update:modelValueAye','modelValueMeaning','qariId','translationId'],
+    methods: {
+        closeNav() {
+            document.getElementById("mySidebar").style.width = "0";
+        },
+        onPlusAyeh() {
+            this.$emit("update:modelValueAye", this.modelValueAye + 1);
+        },
+        onMinusAyeh() {
+            this.$emit("update:modelValueAye", this.modelValueAye - 1);
+        },
+        onPlusMeaning() {
+            this.$emit("update:modelValueMeaning", this.modelValueMeaning + 1);
+        },
+        onMinusMeaning() {
+            this.$emit("update:modelValueMeaning", this.modelValueMeaning - 1);
+        },
+        updateQari(Id){
+            this.$emit("update:qariId" , Id);
+        },
+        updateTranslation(Id){
+            this.$emit("update:translationId" , Id);
+        }
     },
-    onPlusMeaning() {
-      this.$emit("update:modelValueMeaning", this.modelValueMeaning + 1);
-    },
-    onMinusMeaning() {
-      this.$emit("update:modelValueMeaning", this.modelValueMeaning - 1);
-    },
-    updateQari(Id){
-      this.$emit("update:qariId" , Id)
-    },
-    updateTranslation(Id){
-      this.$emit("update:translationId" , Id)
-    }
-  },
 };
 </script>
 

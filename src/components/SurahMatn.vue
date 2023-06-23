@@ -1,127 +1,127 @@
 <template>
-  <v-container class="smatn-container">
-    <div
-      v-for="index in ayehs.length"
-      :key="index"
-      :id="`ayeh-${this.ayehs[index - 1].ayah.number}`"
-    >
-      <div v-if="this.ayehs[index - 1].ayah.number == 1 &&  this.ayehs[index - 1].ayah.surah != 9 && this.ayehs[index - 1].ayah.surah != 1" class="bismillah">﷽</div>
-      <v-row>
-        <v-col md="1" cols="12">
-          <v-row>
-            <v-col md="12" cols="4"
-              ><a href="#" class="a-style"
-                ><div class="num-style">
-                  {{ persianNumber(this.ayehs[index - 1].ayah.number) }}
-                </div></a
-              ></v-col
-            >
-            <v-col md="12" cols="4">
-              <a class="a-style play-link-style" @click="$emit('play', this.ayehs[index - 1].ayah.number)">
-                <v-icon class="play-link-margin">mdi-play</v-icon>
-                پخش
-              </a>
-            </v-col>
-            <v-col md="12" cols="4">
-              <a href="#" class="a-style social-m-link-style ml-2"
-                ><v-icon icon="mdi-facebook"></v-icon
-              ></a>
-              <a href="#" class="a-style social-m-link-style"
-                ><v-icon icon="mdi-twitter"></v-icon
-              ></a>
-            </v-col>
-          </v-row>
-        </v-col>
-        <v-col md="11" cols="12">
-          <div>
-            <div
-              class="ar-style"
-              :style="{ fontSize: this.ayehFontSize + 'px' }"
-            >
-              {{ this.ayehs[index - 1].ayah.ayah }}
-            </div>
-          </div>
-          <div
-            class="fa-style"
-            :style="{ fontSize: this.meaningFontSize + 'px' }"
-          >
-            {{ this.ayehs[index - 1].translates[0].translate }}
-          </div>
-        </v-col>
-        <v-divider class="my-4"></v-divider>
-      </v-row>
-    </div>
-  </v-container>
+    <v-container class="smatn-container">
+        <div
+            v-for="index in ayehs.length"
+            :key="index"
+            :id="`ayeh-${this.ayehs[index - 1].ayah.number}`"
+        >
+            <div v-if="this.ayehs[index - 1].ayah.number == 1 &&  this.ayehs[index - 1].ayah.surah != 9 && this.ayehs[index - 1].ayah.surah != 1" class="bismillah">﷽</div>
+            <v-row>
+                <v-col md="1" cols="12">
+                    <v-row>
+                        <v-col md="12" cols="4"
+                        ><a href="#" class="a-style"
+                        ><div class="num-style">
+                            {{ persianNumber(this.ayehs[index - 1].ayah.number) }}
+                        </div></a
+                        ></v-col
+                        >
+                        <v-col md="12" cols="4">
+                            <a class="a-style play-link-style" @click="$emit('play', this.ayehs[index - 1].ayah.number)">
+                                <v-icon class="play-link-margin">mdi-play</v-icon>
+                                پخش
+                            </a>
+                        </v-col>
+                        <v-col md="12" cols="4">
+                            <a href="#" class="a-style social-m-link-style ml-2"
+                            ><v-icon icon="mdi-facebook"></v-icon
+                            ></a>
+                            <a href="#" class="a-style social-m-link-style"
+                            ><v-icon icon="mdi-twitter"></v-icon
+                            ></a>
+                        </v-col>
+                    </v-row>
+                </v-col>
+                <v-col md="11" cols="12">
+                    <div>
+                        <div
+                            class="ar-style"
+                            :style="{ fontSize: this.ayehFontSize + 'px' }"
+                        >
+                            {{ this.ayehs[index - 1].ayah.ayah }}
+                        </div>
+                    </div>
+                    <div
+                        class="fa-style"
+                        :style="{ fontSize: this.meaningFontSize + 'px' }"
+                    >
+                        {{ this.ayehs[index - 1].translates[0].translate }}
+                    </div>
+                </v-col>
+                <v-divider class="my-4"></v-divider>
+            </v-row>
+        </div>
+    </v-container>
 </template>
 <script>
 import { defineComponent } from "vue";
 
 export default defineComponent({
-  props: {
-    ayehs: {
-      type: Object,
-      required: true,
+    props: {
+        ayehs: {
+            type: Object,
+            required: true,
+        },
+        ayehFontSize: {
+            type: Number,
+            required: true,
+        },
+        meaningFontSize: {
+            type: Number,
+            required: true,
+        },
+        modelValue: {
+            type: Number,
+            required: true,
+        },
+        linked: {
+            type: Boolean,
+            required: true,
+        },
+        ayehIndexScrool: {
+            type: Number,
+            required: true,
+        },
     },
-    ayehFontSize: {
-      type: Number,
-      required: true,
+    emits: ["play"],
+    data() {
+        return {};
     },
-    meaningFontSize: {
-      type: Number,
-      required: true,
-    },
-    modelValue: {
-      type: Number,
-      required: true,
-    },
-    linked: {
-      type: Boolean,
-      required: true,
-    },
-    ayehIndexScrool: {
-      type: Number,
-      required: true,
-    },
-  },
-  emits: ["play"],
-  data() {
-    return {};
-  },
 
-  methods: {
-    persianNumber(n) {
-      n = n.toString();
-      const nlength = n.length;
-      const farsiNum = ["۰", "۱", "۲", "۳", "۴", "۵", "۶", "۷", "۸", "۹"];
+    methods: {
+        persianNumber(n) {
+            n = n.toString();
+            const nlength = n.length;
+            const farsiNum = ["۰", "۱", "۲", "۳", "۴", "۵", "۶", "۷", "۸", "۹"];
 
-      for (let i = 0; i < 10; i++) {
-        for (let j = 0; j < nlength; j++) {
-          const istring = i.toString();
-          n = n.replace(istring, farsiNum[i]);
-        }
-      }
+            for (let i = 0; i < 10; i++) {
+                for (let j = 0; j < nlength; j++) {
+                    const istring = i.toString();
+                    n = n.replace(istring, farsiNum[i]);
+                }
+            }
 
-      return n;
+            return n;
+        },
     },
-  },
-  watch: {
-    modelValue(newValue) {
-      if (this.linked) {
-        document.getElementById(`ayeh-${newValue}`).scrollIntoView({
-          block: "center",
-          behavior: "smooth",
-        });
-      }
+    watch: {
+        modelValue(newValue) {
+            if (this.linked) {
+                document.getElementById(`ayeh-${newValue}`).scrollIntoView({
+                    block: "center",
+                    behavior: "smooth",
+                });
+            }
+        },
+        ayehIndexScrool(newValue) {
+            if (this.ayehIndexScrool != 0) {
+                document.getElementById(`ayeh-${newValue}`).scrollIntoView({
+                    block: "center",
+                    behavior: "smooth",
+                });
+            }
+        },
     },
-    ayehIndexScrool(newValue) {
-      if (this.ayehIndexScrool != 0) {
-        document.getElementById(`ayeh-${newValue}`).scrollIntoView({
-          block: "center",
-          behavior: "smooth",
-        });
-      }
-    },
-  },
 });
 </script>
 <style lang="scss">

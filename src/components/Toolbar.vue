@@ -1,25 +1,25 @@
 <template>
     <v-container class="mx-0 toolbar-container">
         <v-toolbar color="rgb(248, 247, 247)" height="19">
-          <v-toolbar-title class="title-font">تکویر</v-toolbar-title>
+            <v-toolbar-title class="title-font">تکویر</v-toolbar-title>
             <v-btn variant="plain" class="btn-font set-display" href="/">
-              <v-icon class="ml-1">mdi-home</v-icon>
-              صفحه ی اصلی
+                <v-icon class="ml-1">mdi-home</v-icon>
+                صفحه ی اصلی
             </v-btn>
             <v-btn variant="plain" class="btn-font set-display" href="/api">
-              <v-icon class="ml-1">mdi-help-circle</v-icon>
-              رابط های برنامه نویسی 
+                <v-icon class="ml-1">mdi-help-circle</v-icon>
+                رابط های برنامه نویسی 
             </v-btn>
             <v-btn variant="plain" class="btn-font set-display" href="/contact-us">
-              <v-icon class="ml-1">mdi-email</v-icon>
-              تماس با ما  
+                <v-icon class="ml-1">mdi-email</v-icon>
+                تماس با ما  
             </v-btn>
             <v-spacer></v-spacer>
             <v-btn variant="plain" class="btn-font set-display">
-              <v-icon class="ml-1 h1">mdi-android</v-icon>
-              دریافت نسخه ی اندروید
+                <v-icon class="ml-1 h1">mdi-android</v-icon>
+                دریافت نسخه ی اندروید
             </v-btn>
-          <v-app-bar-nav-icon class="colaps-display collaps-icon" @click="updateCollaps" ></v-app-bar-nav-icon>
+            <v-app-bar-nav-icon class="colaps-display collaps-icon" @click="updateCollaps" ></v-app-bar-nav-icon>
         </v-toolbar>
         
     </v-container> 
@@ -27,18 +27,18 @@
 <script>
 import { defineComponent } from "vue";
 export default defineComponent({
-  props:{
-    collapsToggle:{
-      type: Boolean,
-      require: true,
+    props:{
+        collapsToggle:{
+            type: Boolean,
+            require: true,
+        },
     },
-  },
-  methods:{
-    updateCollaps(){
-      this.$emit("update:collapsToggle" , !this.collapsToggle)
-    }
-  } 
-})
+    methods:{
+        updateCollaps(){
+            this.$emit("update:collapsToggle" , !this.collapsToggle);
+        }
+    } 
+});
 </script>
 
 <style lang="scss">

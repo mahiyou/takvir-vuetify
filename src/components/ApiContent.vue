@@ -1,75 +1,75 @@
 <template>
-  <div class="top-menu top-menu-display">
-    <v-row>
-      <v-col cols="6" class="py-5 pr-15 top-menu-title">رابط های برنامه نویسی</v-col>
-      <v-col cols="6" class="py-5">
-        <v-menu open-on-click>
-          <template v-slot:activator="{ props }">
-            <button v-bind="props" class="top-menu-title"
-              >متد ها<v-icon>mdi-menu-down</v-icon>
-            </button>
-          </template>
-          <v-list>
-            <v-list-item>
-              <v-list density="compact" nav>
-                <v-list-item
-                  prepend-icon="mdi-chevron-left"
-                  v-for="index in this.items.length"
-                  :href="'#' + this.items[index - 1].value"
-                  :key="index"
-                  :title="this.items[index - 1].title"
-                  :name="this.items[index - 1].value"
-                  class="list-item-style"
-                ></v-list-item>
-              </v-list>
-            </v-list-item>
-          </v-list>
-        </v-menu>
-      </v-col>
-    </v-row>
-  </div>
-  <v-container class="api-content-con">
-    <div id="start" class="mb-8" v-intersect="onIntersectStart">
-      <div style="font-size: 24px">شروع</div>
-      <v-divider class="my-4"></v-divider>
-      <div>
-        <p>
-          تمامی متد ها به صورت <span class="bold-word">GET</span> نوشته شده است
-          .
-        </p>
-        <p>
-          در پایان هر متد ، نمونه ای از درخواست فرستاده شده و پاسخ دریافت شده ،
-          وجود دارد .
-        </p>
-        <p>
-          هر متد را تا پایان مطالعه کرده و کد خود را با نمونه ی موجود و پاسخ آن
-          مقایسه کنید ، در صورتی که مشکلی داشتید در قسمت
-          <a href="/contact-us" class="link-style">تماس با ما </a>عنوان کنید.
-          (حتما یک راه تماس معتبر برای ارتباط ما با شما وارد کنید) .
-        </p>
-      </div>
+    <div class="top-menu top-menu-display">
+        <v-row>
+            <v-col cols="6" class="py-5 pr-15 top-menu-title">رابط های برنامه نویسی</v-col>
+            <v-col cols="6" class="py-5">
+                <v-menu open-on-click>
+                    <template v-slot:activator="{ props }">
+                        <button v-bind="props" class="top-menu-title"
+                        >متد ها<v-icon>mdi-menu-down</v-icon>
+                        </button>
+                    </template>
+                    <v-list>
+                        <v-list-item>
+                            <v-list density="compact" nav>
+                                <v-list-item
+                                    prepend-icon="mdi-chevron-left"
+                                    v-for="index in this.items.length"
+                                    :href="'#' + this.items[index - 1].value"
+                                    :key="index"
+                                    :title="this.items[index - 1].title"
+                                    :name="this.items[index - 1].value"
+                                    class="list-item-style"
+                                ></v-list-item>
+                            </v-list>
+                        </v-list-item>
+                    </v-list>
+                </v-menu>
+            </v-col>
+        </v-row>
     </div>
-    <div id="get-surahs" v-intersect="onIntersectSurahs">
-      <div style="font-size: 24px">گرفتن تمام سوره ها</div>
-      <v-divider class="my-4"></v-divider>
-      <div>
-        <p>
-          قرآن ۱۱۴ سوره دارد که در این پروژه ، سوره ها به ترتیب وارده شده و
-          شناسه ی هر سوره ، در واقع همان شماره سوره است .
-        </p>
-        <div>
-          <p style="font-size: 18px; font-weight: 400" class="mt-3">
-            آدرس ارسالی
-          </p>
-          <p class="address">https://takv.ir?api=1</p>
+    <v-container class="api-content-con">
+        <div id="start" class="mb-8" v-intersect="onIntersectStart">
+            <div style="font-size: 24px">شروع</div>
+            <v-divider class="my-4"></v-divider>
+            <div>
+                <p>
+                    تمامی متد ها به صورت <span class="bold-word">GET</span> نوشته شده است
+                    .
+                </p>
+                <p>
+                    در پایان هر متد ، نمونه ای از درخواست فرستاده شده و پاسخ دریافت شده ،
+                    وجود دارد .
+                </p>
+                <p>
+                    هر متد را تا پایان مطالعه کرده و کد خود را با نمونه ی موجود و پاسخ آن
+                    مقایسه کنید ، در صورتی که مشکلی داشتید در قسمت
+                    <a href="/contact-us" class="link-style">تماس با ما </a>عنوان کنید.
+                    (حتما یک راه تماس معتبر برای ارتباط ما با شما وارد کنید) .
+                </p>
+            </div>
+        </div>
+        <div id="get-surahs" v-intersect="onIntersectSurahs">
+            <div style="font-size: 24px">گرفتن تمام سوره ها</div>
+            <v-divider class="my-4"></v-divider>
+            <div>
+                <p>
+                    قرآن ۱۱۴ سوره دارد که در این پروژه ، سوره ها به ترتیب وارده شده و
+                    شناسه ی هر سوره ، در واقع همان شماره سوره است .
+                </p>
+                <div>
+                    <p style="font-size: 18px; font-weight: 400" class="mt-3">
+                        آدرس ارسالی
+                    </p>
+                    <p class="address">https://takv.ir?api=1</p>
 
-          <p style="font-size: 18px; font-weight: 400" class="mt-8">
-            نمونه درخواست
-          </p>
-          <v-divider class="my-4"></v-divider>
-          <p class="code-box">GET https://takv.ir?api=1</p>
-          <p>پاسخ</p>
-          <pre class="code-box">
+                    <p style="font-size: 18px; font-weight: 400" class="mt-8">
+                        نمونه درخواست
+                    </p>
+                    <v-divider class="my-4"></v-divider>
+                    <p class="code-box">GET https://takv.ir?api=1</p>
+                    <p>پاسخ</p>
+                    <pre class="code-box">
             <code>
 { 
         "status": true, 
@@ -94,30 +94,30 @@
 }
             </code>
           </pre>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-    <div id="get-qaries" v-intersect="onIntersectQari">
-      <div style="font-size: 24px" class="mt-8">گرفتن قاری ها</div>
-      <v-divider class="my-4"></v-divider>
-      <div>
-        <P>
-          صوت آیه به آیه هر سوره با قاری های سرشناس و متفاوت همراه با صوت ترجمه
-          هر آیه
-        </P>
-        <div>
-          <p style="font-size: 18px; font-weight: 400" class="mt-3">
-            آدرس ارسالی
-          </p>
-          <p class="address">GET https://takv.ir/qaries?api=1</p>
+        <div id="get-qaries" v-intersect="onIntersectQari">
+            <div style="font-size: 24px" class="mt-8">گرفتن قاری ها</div>
+            <v-divider class="my-4"></v-divider>
+            <div>
+                <P>
+                    صوت آیه به آیه هر سوره با قاری های سرشناس و متفاوت همراه با صوت ترجمه
+                    هر آیه
+                </P>
+                <div>
+                    <p style="font-size: 18px; font-weight: 400" class="mt-3">
+                        آدرس ارسالی
+                    </p>
+                    <p class="address">GET https://takv.ir/qaries?api=1</p>
 
-          <p style="font-size: 18px; font-weight: 400" class="mt-8">
-            نمونه درخواست
-          </p>
-          <v-divider class="my-4"></v-divider>
-          <p class="code-box">GET https://takv.ir?api=1</p>
-          <p>پاسخ</p>
-          <pre class="code-box">
+                    <p style="font-size: 18px; font-weight: 400" class="mt-8">
+                        نمونه درخواست
+                    </p>
+                    <v-divider class="my-4"></v-divider>
+                    <p class="code-box">GET https://takv.ir?api=1</p>
+                    <p>پاسخ</p>
+                    <pre class="code-box">
             <code>
 {
         "status": true,
@@ -156,81 +156,81 @@
 }	
             </code>
           </pre>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-    <div id="get-surah" v-intersect="onIntersectSurah">
-      <div style="font-size: 24px">گرفتن سوره</div>
-      <v-divider class="my-4"></v-divider>
-      <div>
-        <p>
-          برای دریافت آیات یک سوره نیاز به شماره سوره است . (در متد
-          <a class="link-style" href="#">گرفتن تمام سوره ها </a>
-          میتوانید شماره سوره را پیدا کنید.)
-        </p>
-        <p>شماره سوره ها در تکویر، شماره سوره در لیست قرآن است .</p>
-        <p>
-          ترجمه ی هر آیه به دو زبان فارسی و انگلیسی موجود میباشد که در صورت
-          افزودن پارامتر <span class="bold-word">lang</span> میتوانید نوع زبان
-          را مشخص کنید
-        </p>
-        <div>
-          <table class="mt-4">
-            <tr class="tr-title">
-              <th style="font-weight: 800; color: #7b7d7f">پارامتر</th>
-              <th style="font-weight: 800; color: #7b7d7f">اجباری؟</th>
-              <th style="font-weight: 800; color: #7b7d7f">توضیحات</th>
-              <th style="font-weight: 800; color: #7b7d7f">نمونه</th>
-            </tr>
-            <tr>
-              <th>lang</th>
-              <th>اختیاری</th>
-              <th>
-                نوع زبان ترجمه ی آیه (fa نشان دهنده زبان فارسی و en نشان دهنده ی
-                زبان انگلیسی) - پیشفرض زبان فارسی
-              </th>
-              <th>en</th>
-            </tr>
-          </table>
-          <table class="mt-4">
-            <tr class="tr-title">
-              <th style="font-weight: 800; color: #7b7d7f">مشخصه</th>
-              <th style="font-weight: 800; color: #7b7d7f">توضیحات</th>
-            </tr>
-            <tr>
-              <th>surah</th>
-              <th>شماره سوره</th>
-            </tr>
-            <tr>
-              <th>number</th>
-              <th>شماره آیه</th>
-            </tr>
-            <tr>
-              <th>page</th>
-              <th>شماره صفحه</th>
-            </tr>
-            <tr>
-              <th>ayah</th>
-              <th>متن آیه قرآن</th>
-            </tr>
-            <tr>
-              <th>plain</th>
-              <th>متن ساده و بدون اعراب آیه قرآن</th>
-            </tr>
-          </table>
-          <div>
-            <p style="font-size: 18px; font-weight: 400" class="mt-3">
-              آدرس ارسالی
-            </p>
-            <p class="address">https://takv.ir/surah/{SurahID}?api=1</p>
-
-            <p style="font-size: 18px; font-weight: 400" class="mt-8">
-              نمونه درخواست
-            </p>
+        <div id="get-surah" v-intersect="onIntersectSurah">
+            <div style="font-size: 24px">گرفتن سوره</div>
             <v-divider class="my-4"></v-divider>
-            <p class="code-box">GET https://takv.ir/surah/1?api=1</p>
-            <p>پاسخ</p>
-            <pre class="code-box">
+            <div>
+                <p>
+                    برای دریافت آیات یک سوره نیاز به شماره سوره است . (در متد
+                    <a class="link-style" href="#">گرفتن تمام سوره ها </a>
+                    میتوانید شماره سوره را پیدا کنید.)
+                </p>
+                <p>شماره سوره ها در تکویر، شماره سوره در لیست قرآن است .</p>
+                <p>
+                    ترجمه ی هر آیه به دو زبان فارسی و انگلیسی موجود میباشد که در صورت
+                    افزودن پارامتر <span class="bold-word">lang</span> میتوانید نوع زبان
+                    را مشخص کنید
+                </p>
+                <div>
+                    <table class="mt-4">
+                        <tr class="tr-title">
+                            <th style="font-weight: 800; color: #7b7d7f">پارامتر</th>
+                            <th style="font-weight: 800; color: #7b7d7f">اجباری؟</th>
+                            <th style="font-weight: 800; color: #7b7d7f">توضیحات</th>
+                            <th style="font-weight: 800; color: #7b7d7f">نمونه</th>
+                        </tr>
+                        <tr>
+                            <th>lang</th>
+                            <th>اختیاری</th>
+                            <th>
+                                نوع زبان ترجمه ی آیه (fa نشان دهنده زبان فارسی و en نشان دهنده ی
+                                زبان انگلیسی) - پیشفرض زبان فارسی
+                            </th>
+                            <th>en</th>
+                        </tr>
+                    </table>
+                    <table class="mt-4">
+                        <tr class="tr-title">
+                            <th style="font-weight: 800; color: #7b7d7f">مشخصه</th>
+                            <th style="font-weight: 800; color: #7b7d7f">توضیحات</th>
+                        </tr>
+                        <tr>
+                            <th>surah</th>
+                            <th>شماره سوره</th>
+                        </tr>
+                        <tr>
+                            <th>number</th>
+                            <th>شماره آیه</th>
+                        </tr>
+                        <tr>
+                            <th>page</th>
+                            <th>شماره صفحه</th>
+                        </tr>
+                        <tr>
+                            <th>ayah</th>
+                            <th>متن آیه قرآن</th>
+                        </tr>
+                        <tr>
+                            <th>plain</th>
+                            <th>متن ساده و بدون اعراب آیه قرآن</th>
+                        </tr>
+                    </table>
+                    <div>
+                        <p style="font-size: 18px; font-weight: 400" class="mt-3">
+                            آدرس ارسالی
+                        </p>
+                        <p class="address">https://takv.ir/surah/{SurahID}?api=1</p>
+
+                        <p style="font-size: 18px; font-weight: 400" class="mt-8">
+                            نمونه درخواست
+                        </p>
+                        <v-divider class="my-4"></v-divider>
+                        <p class="code-box">GET https://takv.ir/surah/1?api=1</p>
+                        <p>پاسخ</p>
+                        <pre class="code-box">
             <code>			
 {
         "status": true,
@@ -567,82 +567,82 @@
 }	
             </code>
           </pre>
-          </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-    <div id="get-page" v-intersect="onIntersectPage">
-      <div style="font-size: 24px">گرفتن آیات یک صفحه</div>
-      <v-divider class="my-4"></v-divider>
-      <div>
-        <p>
-          صفحه بندی آیات بر اساس قرآن با رسم الخط عثمان طه در نظر گرفته شده که
-          در این رسم الخط هر یک از صفحات با یک آیه شروع شده و با اتمام یک آیه در
-          انتهای صفحه تمام میشود .
-        </p>
-        <p>در این رسم الخط قرآن دارای 604 صفحه است .</p>
-        <p>
-          ترجمه ی هر آیه به دو زبان فارسی و انگلیسی موجود میباشد که در صورت
-          افزودن پارامتر <span class="bold-word">lang</span> میتوانید نوع زبان
-          را مشخص کنید
-        </p>
-        <div>
-          <table class="mt-4">
-            <tr class="tr-title">
-              <th style="font-weight: 800; color: #7b7d7f">پارامتر</th>
-              <th style="font-weight: 800; color: #7b7d7f">اجباری؟</th>
-              <th style="font-weight: 800; color: #7b7d7f">توضیحات</th>
-              <th style="font-weight: 800; color: #7b7d7f">نمونه</th>
-            </tr>
-            <tr>
-              <th>lang</th>
-              <th>اختیاری</th>
-              <th>
-                نوع زبان ترجمه ی آیه (fa نشان دهنده زبان فارسی و en نشان دهنده ی
-                زبان انگلیسی) - پیشفرض زبان فارسی
-              </th>
-              <th>en</th>
-            </tr>
-          </table>
-          <table class="mt-4">
-            <tr class="tr-title">
-              <th style="font-weight: 800; color: #7b7d7f">مشخصه</th>
-              <th style="font-weight: 800; color: #7b7d7f">توضیحات</th>
-            </tr>
-            <tr>
-              <th>surah</th>
-              <th>شماره سوره</th>
-            </tr>
-            <tr>
-              <th>number</th>
-              <th>شماره آیه</th>
-            </tr>
-            <tr>
-              <th>page</th>
-              <th>شماره صفحه</th>
-            </tr>
-            <tr>
-              <th>ayah</th>
-              <th>متن آیه قرآن</th>
-            </tr>
-            <tr>
-              <th>plain</th>
-              <th>متن ساده و بدون اعراب آیه قرآن</th>
-            </tr>
-          </table>
-          <div>
-            <p style="font-size: 18px; font-weight: 400" class="mt-3">
-              آدرس ارسالی
-            </p>
-            <p class="address">https://takv.ir/page/{PageNumber}?api=1</p>
-
-            <p style="font-size: 18px; font-weight: 400" class="mt-8">
-              نمونه درخواست
-            </p>
+        <div id="get-page" v-intersect="onIntersectPage">
+            <div style="font-size: 24px">گرفتن آیات یک صفحه</div>
             <v-divider class="my-4"></v-divider>
-            <p class="code-box">GET https://takv.ir/page/2?api=1</p>
-            <p>پاسخ</p>
-            <pre class="code-box">
+            <div>
+                <p>
+                    صفحه بندی آیات بر اساس قرآن با رسم الخط عثمان طه در نظر گرفته شده که
+                    در این رسم الخط هر یک از صفحات با یک آیه شروع شده و با اتمام یک آیه در
+                    انتهای صفحه تمام میشود .
+                </p>
+                <p>در این رسم الخط قرآن دارای 604 صفحه است .</p>
+                <p>
+                    ترجمه ی هر آیه به دو زبان فارسی و انگلیسی موجود میباشد که در صورت
+                    افزودن پارامتر <span class="bold-word">lang</span> میتوانید نوع زبان
+                    را مشخص کنید
+                </p>
+                <div>
+                    <table class="mt-4">
+                        <tr class="tr-title">
+                            <th style="font-weight: 800; color: #7b7d7f">پارامتر</th>
+                            <th style="font-weight: 800; color: #7b7d7f">اجباری؟</th>
+                            <th style="font-weight: 800; color: #7b7d7f">توضیحات</th>
+                            <th style="font-weight: 800; color: #7b7d7f">نمونه</th>
+                        </tr>
+                        <tr>
+                            <th>lang</th>
+                            <th>اختیاری</th>
+                            <th>
+                                نوع زبان ترجمه ی آیه (fa نشان دهنده زبان فارسی و en نشان دهنده ی
+                                زبان انگلیسی) - پیشفرض زبان فارسی
+                            </th>
+                            <th>en</th>
+                        </tr>
+                    </table>
+                    <table class="mt-4">
+                        <tr class="tr-title">
+                            <th style="font-weight: 800; color: #7b7d7f">مشخصه</th>
+                            <th style="font-weight: 800; color: #7b7d7f">توضیحات</th>
+                        </tr>
+                        <tr>
+                            <th>surah</th>
+                            <th>شماره سوره</th>
+                        </tr>
+                        <tr>
+                            <th>number</th>
+                            <th>شماره آیه</th>
+                        </tr>
+                        <tr>
+                            <th>page</th>
+                            <th>شماره صفحه</th>
+                        </tr>
+                        <tr>
+                            <th>ayah</th>
+                            <th>متن آیه قرآن</th>
+                        </tr>
+                        <tr>
+                            <th>plain</th>
+                            <th>متن ساده و بدون اعراب آیه قرآن</th>
+                        </tr>
+                    </table>
+                    <div>
+                        <p style="font-size: 18px; font-weight: 400" class="mt-3">
+                            آدرس ارسالی
+                        </p>
+                        <p class="address">https://takv.ir/page/{PageNumber}?api=1</p>
+
+                        <p style="font-size: 18px; font-weight: 400" class="mt-8">
+                            نمونه درخواست
+                        </p>
+                        <v-divider class="my-4"></v-divider>
+                        <p class="code-box">GET https://takv.ir/page/2?api=1</p>
+                        <p>پاسخ</p>
+                        <pre class="code-box">
             <code>			
 {
       "status": true,
@@ -892,85 +892,85 @@
 }	
             </code>
           </pre>
-          </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-    <div id="get-ayeh" v-intersect="onIntersectAyeh">
-      <div style="font-size: 24px">گرفتن آیه</div>
-      <v-divider class="my-4"></v-divider>
-      <div>
-        <p>
-          برای دریافت آیه نیاز به شماره آیه به همراه شماره سوره است . (در متد
-          <a class="link-style" href="#">گرفتن تمام سوره ها </a> میتوانید شماره
-          سوره را پیدا کنید) . شماره سوره ها در تکویر، شماره سوره در لیست قرآن
-          است
-        </p>
-        <p>شماره سوره ها در تکویر، شماره سوره در لیست قرآن است</p>
-        <p>
-          ترجمه ی هر آیه به دو زبان فارسی و انگلیسی موجود میباشد که در صورت
-          افزودن پارامتر <span class="bold-word">lang</span> میتوانید نوع زبان
-          را مشخص کنید
-        </p>
-        <div>
-          <table class="mt-4">
-            <tr class="tr-title">
-              <th style="font-weight: 800; color: #7b7d7f">پارامتر</th>
-              <th style="font-weight: 800; color: #7b7d7f">اجباری؟</th>
-              <th style="font-weight: 800; color: #7b7d7f">توضیحات</th>
-              <th style="font-weight: 800; color: #7b7d7f">نمونه</th>
-            </tr>
-            <tr>
-              <th>lang</th>
-              <th>اختیاری</th>
-              <th>
-                نوع زبان ترجمه ی آیه (fa نشان دهنده زبان فارسی و en نشان دهنده ی
-                زبان انگلیسی) - پیشفرض زبان فارسی
-              </th>
-              <th>en</th>
-            </tr>
-          </table>
-          <table class="mt-4">
-            <tr class="tr-title">
-              <th style="font-weight: 800; color: #7b7d7f">مشخصه</th>
-              <th style="font-weight: 800; color: #7b7d7f">توضیحات</th>
-            </tr>
-            <tr>
-              <th>surah</th>
-              <th>شماره سوره</th>
-            </tr>
-            <tr>
-              <th>number</th>
-              <th>شماره آیه</th>
-            </tr>
-            <tr>
-              <th>page</th>
-              <th>شماره صفحه</th>
-            </tr>
-            <tr>
-              <th>ayah</th>
-              <th>متن آیه قرآن</th>
-            </tr>
-            <tr>
-              <th>plain</th>
-              <th>متن ساده و بدون اعراب آیه قرآن</th>
-            </tr>
-          </table>
-          <div>
-            <p style="font-size: 18px; font-weight: 400" class="mt-3">
-              آدرس ارسالی
-            </p>
-            <p class="address">
-              https://takv.ir/surah/{SurahID}/{AyahID}?api=1
-            </p>
-
-            <p style="font-size: 18px; font-weight: 400" class="mt-8">
-              نمونه درخواست
-            </p>
+        <div id="get-ayeh" v-intersect="onIntersectAyeh">
+            <div style="font-size: 24px">گرفتن آیه</div>
             <v-divider class="my-4"></v-divider>
-            <p class="code-box">GET https://takv.ir/surah/55/13?api=1</p>
-            <p>پاسخ</p>
-            <pre class="code-box">
+            <div>
+                <p>
+                    برای دریافت آیه نیاز به شماره آیه به همراه شماره سوره است . (در متد
+                    <a class="link-style" href="#">گرفتن تمام سوره ها </a> میتوانید شماره
+                    سوره را پیدا کنید) . شماره سوره ها در تکویر، شماره سوره در لیست قرآن
+                    است
+                </p>
+                <p>شماره سوره ها در تکویر، شماره سوره در لیست قرآن است</p>
+                <p>
+                    ترجمه ی هر آیه به دو زبان فارسی و انگلیسی موجود میباشد که در صورت
+                    افزودن پارامتر <span class="bold-word">lang</span> میتوانید نوع زبان
+                    را مشخص کنید
+                </p>
+                <div>
+                    <table class="mt-4">
+                        <tr class="tr-title">
+                            <th style="font-weight: 800; color: #7b7d7f">پارامتر</th>
+                            <th style="font-weight: 800; color: #7b7d7f">اجباری؟</th>
+                            <th style="font-weight: 800; color: #7b7d7f">توضیحات</th>
+                            <th style="font-weight: 800; color: #7b7d7f">نمونه</th>
+                        </tr>
+                        <tr>
+                            <th>lang</th>
+                            <th>اختیاری</th>
+                            <th>
+                                نوع زبان ترجمه ی آیه (fa نشان دهنده زبان فارسی و en نشان دهنده ی
+                                زبان انگلیسی) - پیشفرض زبان فارسی
+                            </th>
+                            <th>en</th>
+                        </tr>
+                    </table>
+                    <table class="mt-4">
+                        <tr class="tr-title">
+                            <th style="font-weight: 800; color: #7b7d7f">مشخصه</th>
+                            <th style="font-weight: 800; color: #7b7d7f">توضیحات</th>
+                        </tr>
+                        <tr>
+                            <th>surah</th>
+                            <th>شماره سوره</th>
+                        </tr>
+                        <tr>
+                            <th>number</th>
+                            <th>شماره آیه</th>
+                        </tr>
+                        <tr>
+                            <th>page</th>
+                            <th>شماره صفحه</th>
+                        </tr>
+                        <tr>
+                            <th>ayah</th>
+                            <th>متن آیه قرآن</th>
+                        </tr>
+                        <tr>
+                            <th>plain</th>
+                            <th>متن ساده و بدون اعراب آیه قرآن</th>
+                        </tr>
+                    </table>
+                    <div>
+                        <p style="font-size: 18px; font-weight: 400" class="mt-3">
+                            آدرس ارسالی
+                        </p>
+                        <p class="address">
+                            https://takv.ir/surah/{SurahID}/{AyahID}?api=1
+                        </p>
+
+                        <p style="font-size: 18px; font-weight: 400" class="mt-8">
+                            نمونه درخواست
+                        </p>
+                        <v-divider class="my-4"></v-divider>
+                        <p class="code-box">GET https://takv.ir/surah/55/13?api=1</p>
+                        <p>پاسخ</p>
+                        <pre class="code-box">
             <code>			
 {
       "status": true,
@@ -1034,46 +1034,46 @@
 }
             </code>
           </pre>
-          </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-    <div id="search" class="mb-8" v-intersect="onIntersectSearch">
-      <div style="font-size: 24px">جستجو</div>
-      <v-divider class="my-4"></v-divider>
-      <div>
-        <p>
-          در این متد میتوانید حروف و کلماتی را در اسم سوره ها، متن قرآن و متن
-          ترجمه ی قرآن جستجو کنید .
-        </p>
-        <div>
-          <table class="mt-4">
-            <tr class="tr-title">
-              <th style="font-weight: 800; color: #7b7d7f">پارامتر</th>
-              <th style="font-weight: 800; color: #7b7d7f">اجباری؟</th>
-              <th style="font-weight: 800; color: #7b7d7f">توضیحات</th>
-              <th style="font-weight: 800; color: #7b7d7f">نمونه</th>
-            </tr>
-            <tr>
-              <th>word</th>
-              <th>اجباری</th>
-              <th>کلمه ای که به دنبال آن هستید</th>
-              <th>معارج</th>
-            </tr>
-          </table>
-          <div>
-            <p style="font-size: 18px; font-weight: 400" class="mt-3">
-              آدرس ارسالی
-            </p>
-            <p class="address">https://takv.ir/search?word=term&api=1</p>
-
-            <p style="font-size: 18px; font-weight: 400" class="mt-8">
-              نمونه درخواست
-            </p>
+        <div id="search" class="mb-8" v-intersect="onIntersectSearch">
+            <div style="font-size: 24px">جستجو</div>
             <v-divider class="my-4"></v-divider>
-            <p class="code-box">GET https://takv.ir/search?word=معارج&api=1</p>
-            <p>پاسخ</p>
-            <pre class="code-box">
+            <div>
+                <p>
+                    در این متد میتوانید حروف و کلماتی را در اسم سوره ها، متن قرآن و متن
+                    ترجمه ی قرآن جستجو کنید .
+                </p>
+                <div>
+                    <table class="mt-4">
+                        <tr class="tr-title">
+                            <th style="font-weight: 800; color: #7b7d7f">پارامتر</th>
+                            <th style="font-weight: 800; color: #7b7d7f">اجباری؟</th>
+                            <th style="font-weight: 800; color: #7b7d7f">توضیحات</th>
+                            <th style="font-weight: 800; color: #7b7d7f">نمونه</th>
+                        </tr>
+                        <tr>
+                            <th>word</th>
+                            <th>اجباری</th>
+                            <th>کلمه ای که به دنبال آن هستید</th>
+                            <th>معارج</th>
+                        </tr>
+                    </table>
+                    <div>
+                        <p style="font-size: 18px; font-weight: 400" class="mt-3">
+                            آدرس ارسالی
+                        </p>
+                        <p class="address">https://takv.ir/search?word=term&api=1</p>
+
+                        <p style="font-size: 18px; font-weight: 400" class="mt-8">
+                            نمونه درخواست
+                        </p>
+                        <v-divider class="my-4"></v-divider>
+                        <p class="code-box">GET https://takv.ir/search?word=معارج&api=1</p>
+                        <p>پاسخ</p>
+                        <pre class="code-box">
             <code>			
 {
       "status": true,
@@ -1117,88 +1117,88 @@
 }
             </code>
           </pre>
-          </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  </v-container>
+    </v-container>
 </template>
 <script>
 import { defineComponent } from "vue";
 
 export default defineComponent({
-  data() {
-    return {
-      items: [
-        { title: "شروع", value: "start" },
-        { title: "گرفتن تمام سوره ها", value: "get-surahs" },
-        { title: "گرفتن قاری ها", value: "get-qaries" },
-        { title: "گرفتن سوره", value: "get-surah" },
-        { title: "گرفتن صفحه", value: "get-page" },
-        { title: "گرفتن آیه", value: "get-ayeh" },
-        { title: "جستجو", value: "search" },
-      ],
-    };
-  },
-  props: {
-    // navItem: {
-    //   type: undefined,
-    //   require: true,
-    // },
-    currentNavItem: {
-      type: undefined,
-      require: true,
+    data() {
+        return {
+            items: [
+                { title: "شروع", value: "start" },
+                { title: "گرفتن تمام سوره ها", value: "get-surahs" },
+                { title: "گرفتن قاری ها", value: "get-qaries" },
+                { title: "گرفتن سوره", value: "get-surah" },
+                { title: "گرفتن صفحه", value: "get-page" },
+                { title: "گرفتن آیه", value: "get-ayeh" },
+                { title: "جستجو", value: "search" },
+            ],
+        };
     },
-  },
-  methods: {
-    onIntersectStart(isIntersecting) {
-      if (isIntersecting) {
-        this.$emit("update:currentNavItem", "start");
-      }
+    props: {
+        // navItem: {
+        //   type: undefined,
+        //   require: true,
+        // },
+        currentNavItem: {
+            type: undefined,
+            require: true,
+        },
     },
-    onIntersectSurahs(isIntersecting) {
-      if (isIntersecting) {
-        this.$emit("update:currentNavItem", "get-surahs");
-      }
+    methods: {
+        onIntersectStart(isIntersecting) {
+            if (isIntersecting) {
+                this.$emit("update:currentNavItem", "start");
+            }
+        },
+        onIntersectSurahs(isIntersecting) {
+            if (isIntersecting) {
+                this.$emit("update:currentNavItem", "get-surahs");
+            }
+        },
+        onIntersectQari(isIntersecting) {
+            if (isIntersecting) {
+                this.$emit("update:currentNavItem", "get-qaries");
+            }
+        },
+        onIntersectSurah(isIntersecting) {
+            if (isIntersecting) {
+                this.$emit("update:currentNavItem", "get-surah");
+            }
+        },
+        onIntersectPage(isIntersecting) {
+            if (isIntersecting) {
+                this.$emit("update:currentNavItem", "get-page");
+            }
+        },
+        onIntersectAyeh(isIntersecting) {
+            if (isIntersecting) {
+                this.$emit("update:currentNavItem", "get-ayeh");
+            }
+        },
+        onIntersectSearch(isIntersecting) {
+            if (isIntersecting) {
+                this.$emit("update:currentNavItem", "search");
+            }
+        },
     },
-    onIntersectQari(isIntersecting) {
-      if (isIntersecting) {
-        this.$emit("update:currentNavItem", "get-qaries");
-      }
-    },
-    onIntersectSurah(isIntersecting) {
-      if (isIntersecting) {
-        this.$emit("update:currentNavItem", "get-surah");
-      }
-    },
-    onIntersectPage(isIntersecting) {
-      if (isIntersecting) {
-        this.$emit("update:currentNavItem", "get-page");
-      }
-    },
-    onIntersectAyeh(isIntersecting) {
-      if (isIntersecting) {
-        this.$emit("update:currentNavItem", "get-ayeh");
-      }
-    },
-    onIntersectSearch(isIntersecting) {
-      if (isIntersecting) {
-        this.$emit("update:currentNavItem", "search");
-      }
-    },
-  },
-  watch: {
-    currentNavItem(newValue) {
-      console.log(newValue)
-      window.location.hash = newValue;
-      return;
+    watch: {
+        currentNavItem(newValue) {
+            console.log(newValue);
+            window.location.hash = newValue;
+            return;
 
-      document.getElementById(newValue).scrollIntoView({
-        block: "start",
-        behavior: "smooth",
-      });
+            document.getElementById(newValue).scrollIntoView({
+                block: "start",
+                behavior: "smooth",
+            });
+        },
     },
-  },
 });
 </script>
 <style lang="scss">

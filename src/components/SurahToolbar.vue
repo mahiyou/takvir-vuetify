@@ -1,42 +1,42 @@
 <template dir="rtl">
-  <v-container class="SurahToolbar-container">
-    <v-toolbar class="surah-toolbar bg-white" density="compact">
-      <v-btn variant="text" href="/">
-        <v-icon class="toolbar-btn-color">mdi-home</v-icon>
-      </v-btn>
-      <slot/>
+    <v-container class="SurahToolbar-container">
+        <v-toolbar class="surah-toolbar bg-white" density="compact">
+            <v-btn variant="text" href="/">
+                <v-icon class="toolbar-btn-color">mdi-home</v-icon>
+            </v-btn>
+            <slot/>
 
-      <v-spacer></v-spacer>
+            <v-spacer></v-spacer>
 
-      <div class="form-group search-input justify-center s-d-none">
-        <div class="input-group">
-          <v-row>
-            <v-col cols="10">
-              <input
-                type="text"
-                value=""
-                name="word"
-                class="ql-input-style form-control ui-autocomplete-input"
-              />
-            </v-col>
-            <v-col cols="2">
-              <v-btn
-                variant="text"
-                type="submit"
-                class="bg-mygreen ql-btn-confirm"
-              >
-                <v-icon>mdi-magnify</v-icon>
-              </v-btn>
-            </v-col>
-          </v-row>
-        </div>
-      </div>
+            <div class="form-group search-input justify-center s-d-none">
+                <div class="input-group">
+                    <v-row>
+                        <v-col cols="10">
+                            <input
+                                type="text"
+                                value=""
+                                name="word"
+                                class="ql-input-style form-control ui-autocomplete-input"
+                            />
+                        </v-col>
+                        <v-col cols="2">
+                            <v-btn
+                                variant="text"
+                                type="submit"
+                                class="bg-mygreen ql-btn-confirm"
+                            >
+                                <v-icon>mdi-magnify</v-icon>
+                            </v-btn>
+                        </v-col>
+                    </v-row>
+                </div>
+            </div>
 
-      <v-btn variant="text" @click="$emit('side-bar')" class="font-weight-bold">
-        <v-icon class="toolbar-btn-color">mdi-cogs</v-icon>
-      </v-btn>
-    </v-toolbar>
-  </v-container>
+            <v-btn variant="text" @click="$emit('side-bar')" class="font-weight-bold">
+                <v-icon class="toolbar-btn-color">mdi-cogs</v-icon>
+            </v-btn>
+        </v-toolbar>
+    </v-container>
 </template>
 <style lang="scss">
 .SurahToolbar-container {
@@ -123,25 +123,25 @@
 import { defineComponent } from "vue";
 
 export default defineComponent({
-  props: {
-    surahNum:undefined,
-  },
-  methods: {
-    persianNumber(n) {
-      n = n.toString();
-      const nlength = n.length;
-      const farsiNum = ["۰", "۱", "۲", "۳", "۴", "۵", "۶", "۷", "۸", "۹"];
-
-      for (let i = 0; i < 10; i++) {
-        for (let j = 0; j < nlength; j++) {
-          const istring = i.toString();
-          n = n.replace(istring, farsiNum[i]);
-        }
-      }
-
-      return n;
+    props: {
+        surahNum:undefined,
     },
+    methods: {
+        persianNumber(n) {
+            n = n.toString();
+            const nlength = n.length;
+            const farsiNum = ["۰", "۱", "۲", "۳", "۴", "۵", "۶", "۷", "۸", "۹"];
+
+            for (let i = 0; i < 10; i++) {
+                for (let j = 0; j < nlength; j++) {
+                    const istring = i.toString();
+                    n = n.replace(istring, farsiNum[i]);
+                }
+            }
+
+            return n;
+        },
     
-  },
+    },
 });
 </script>

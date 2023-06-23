@@ -1,46 +1,46 @@
 <template>
-  <div class="backgroungimg">
-    <v-container>
-      <div class="d-flex justify-center align-center mt-11 mb-6">
-        <a href="#" class="ql-img-w"
-          ><v-img
-            max-width="100%"
-            height="auto"
-            aspect-ratio="16/9"
-            cover
-            src="@/assets/pics/logo-lg-w.png"
-          ></v-img
-        ></a>
-      </div>
+    <div class="backgroungimg">
+        <v-container>
+            <div class="d-flex justify-center align-center mt-11 mb-6">
+                <a href="#" class="ql-img-w"
+                ><v-img
+                    max-width="100%"
+                    height="auto"
+                    aspect-ratio="16/9"
+                    cover
+                    src="@/assets/pics/logo-lg-w.png"
+                ></v-img
+                ></a>
+            </div>
 
-      <div class="d-flex justify-center align-center mb-2">
-        <p class="font-weight-medium ql-title-font">قرآن کریم</p>
-      </div>
-      <div class="d-flex justify-center align-center align-center">
-        <div class="form-group search-input justify-center pr-4">
-          <div class="input-group">
-            <v-row>
-                <v-col cols="10">
-                    <input
-                    type="text"
-                    value=""
-                    name="word"
-                    class="ql-input-style form-control ui-autocomplete-input"
-                    placeholder="نام سوره و یا کلمه ای از قرآن را وارد کنید .."
-                    />
-                </v-col>
-                <v-col cols="2">
+            <div class="d-flex justify-center align-center mb-2">
+                <p class="font-weight-medium ql-title-font">قرآن کریم</p>
+            </div>
+            <div class="d-flex justify-center align-center align-center">
+                <div class="form-group search-input justify-center pr-4">
+                    <div class="input-group">
+                        <v-row>
+                            <v-col cols="10">
+                                <input
+                                    type="text"
+                                    value=""
+                                    name="word"
+                                    class="ql-input-style form-control ui-autocomplete-input"
+                                    placeholder="نام سوره و یا کلمه ای از قرآن را وارد کنید .."
+                                />
+                            </v-col>
+                            <v-col cols="2">
 
-                    <v-btn variant="text" type="submit" class="bg-mygreen ql-btn-confirm">
-                        <v-icon>mdi-magnify</v-icon>
-                    </v-btn> 
-                </v-col>
-            </v-row> 
-          </div>
-        </div>
-      </div>
-    </v-container>
-  </div>
+                                <v-btn variant="text" type="submit" class="bg-mygreen ql-btn-confirm">
+                                    <v-icon>mdi-magnify</v-icon>
+                                </v-btn> 
+                            </v-col>
+                        </v-row> 
+                    </div>
+                </div>
+            </div>
+        </v-container>
+    </div>
 </template>
 <style lang="scss">
 .backgroungimg {
