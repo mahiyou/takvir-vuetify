@@ -1,107 +1,103 @@
 <template>
-    <v-locale-provider rtl>
-        <v-app>
-            <SurahToolbar
-                v-if="ayehs"
-                :surahNum="$route.params.surahNum"
-                :surahAyehs="ayehs.length"
-                @side-bar="openNav"
-            >
-                <v-menu open-on-click>
-                    <template v-slot:activator="{ props }">
-                        <v-btn class="toolbar-menu toolbar-btn-color" v-bind="props">
-                            برو به آیه <v-icon>mdi-menu-down</v-icon></v-btn
-                        >
-                    </template>
-                    <v-list>
-                        <v-list-item v-for="index in ayehs.length" :key="index">
-                            <v-list-item-title
-                            ><v-btn variant="text" float="right" @click="scrollTo(index)">{{
-                                persianNumber(index)
-                            }}</v-btn></v-list-item-title
-                            >
-                        </v-list-item>
-                    </v-list>
-                </v-menu>
-                <v-menu open-on-click>
-                    <template v-slot:activator="{ props }">
-                        <v-btn class="toolbar-menu toolbar-btn-color" v-bind="props"
-                        ><span :class="'icon-surah' + $route.params.surahNum"></span
-                        ><v-icon>mdi-menu-down</v-icon>
-                        </v-btn>
-                    </template>
-                    <v-list>
-                        <v-list-item v-for="index in 114" :key="index">
-                            <a
-                                :href="'/surah/' + index"
-                                class="text-decoration-none text-black"
-                            >
-                                <v-row>
-                                    <v-col class="d-inline-flex text-grey-lighten-1" cols="3">{{
-                                        persianNumber(index)
-                                    }}</v-col>
-                                    <v-col class="d-inline-flex" cols="9">
-                                        <span
-                                            :class="'icon-surah' + index"
-                                        ></span
-                                        ></v-col>
-                                </v-row>
-                            </a>
-                        </v-list-item>
-                    </v-list>
-                </v-menu>
-            </SurahToolbar>
-            <SurahMatn
-                v-if="ayehs"
-                :ayehFontSize="ayehFontSize"
-                :meaningFontSize="meaningFontSize"
-                :linked="linked"
-                :ayehIndexScrool="ayehIndexScrool"
-                @play="playAyeh"
-                v-model:ayehs="ayehs"
-                v-model="player.ayeh"
-            />
-            <v-row>
-                <v-col cols="2" offset="1">
-                    <v-btn v-if="$route.params.surahNum > 1" variant="text" class="next-btn-style" :href="'/surah/'+($route.params.surahNum-1)"
-                    ><v-icon icon="mdi-arrow-right-thin" class="ml-1 mt-1"></v-icon>سوره
-                        ی قبل</v-btn
+    <SurahToolbar
+        v-if="ayehs"
+        :surahNum="$route.params.surahNum"
+        :surahAyehs="ayehs.length"
+        @side-bar="openNav"
+    >
+        <v-menu open-on-click>
+            <template v-slot:activator="{ props }">
+                <v-btn class="toolbar-menu toolbar-btn-color" v-bind="props">
+                    برو به آیه <v-icon>mdi-menu-down</v-icon></v-btn
+                >
+            </template>
+            <v-list>
+                <v-list-item v-for="index in ayehs.length" :key="index">
+                    <v-list-item-title
+                    ><v-btn variant="text" float="right" @click="scrollTo(index)">{{
+                        persianNumber(index)
+                    }}</v-btn></v-list-item-title
                     >
-                </v-col>
-                <v-col cols="2" offset="6">
-                    <v-btn v-if="$route.params.surahNum < 114" variant="text" class="next-btn-style" :href="'/surah/'+(parseInt($route.params.surahNum)+1)"
-                    >سوره ی بعد<v-icon
-                        icon="mdi-arrow-left-thin"
-                        class="mr-1 mt-1"
-                    ></v-icon
-                    ></v-btn>
-                </v-col>
-            </v-row>
+                </v-list-item>
+            </v-list>
+        </v-menu>
+        <v-menu open-on-click>
+            <template v-slot:activator="{ props }">
+                <v-btn class="toolbar-menu toolbar-btn-color" v-bind="props"
+                ><span :class="'icon-surah' + $route.params.surahNum"></span
+                ><v-icon>mdi-menu-down</v-icon>
+                </v-btn>
+            </template>
+            <v-list>
+                <v-list-item v-for="index in 114" :key="index">
+                    <a
+                        :href="'/surah/' + index"
+                        class="text-decoration-none text-black"
+                    >
+                        <v-row>
+                            <v-col class="d-inline-flex text-grey-lighten-1" cols="3">{{
+                                persianNumber(index)
+                            }}</v-col>
+                            <v-col class="d-inline-flex" cols="9">
+                                <span
+                                    :class="'icon-surah' + index"
+                                ></span
+                                ></v-col>
+                        </v-row>
+                    </a>
+                </v-list-item>
+            </v-list>
+        </v-menu>
+    </SurahToolbar>
+    <SurahMatn
+        v-if="ayehs"
+        :ayehFontSize="ayehFontSize"
+        :meaningFontSize="meaningFontSize"
+        :linked="linked"
+        :ayehIndexScrool="ayehIndexScrool"
+        @play="playAyeh"
+        v-model:ayehs="ayehs"
+        v-model="player.ayeh"
+    />
+    <v-row>
+        <v-col cols="2" offset="1">
+            <v-btn v-if="$route.params.surahNum > 1" variant="text" class="next-btn-style" :href="'/surah/'+($route.params.surahNum-1)"
+            ><v-icon icon="mdi-arrow-right-thin" class="ml-1 mt-1"></v-icon>سوره
+                ی قبل</v-btn
+            >
+        </v-col>
+        <v-col cols="2" offset="6">
+            <v-btn v-if="$route.params.surahNum < 114" variant="text" class="next-btn-style" :href="'/surah/'+(parseInt($route.params.surahNum)+1)"
+            >سوره ی بعد<v-icon
+                icon="mdi-arrow-left-thin"
+                class="mr-1 mt-1"
+            ></v-icon
+            ></v-btn>
+        </v-col>
+    </v-row>
 
-            <Footer />
-            <Player
-                ref="player"
-                :url="srcAudio"
-                :title="playerTitle"
-                @ended="playerEnded"
-                @prevoius="playPrevoiusAyeh"
-                @next="playNextAyeh"
-                @repeat="repeat"
-                @linked="islinked"
-                v-model="player.playing"
-            />
-            <SurahSideBar
-                v-if="qaries"
-                v-model:modelValueAye="ayehFontSize"
-                v-model:modelValueMeaning="meaningFontSize"
-                v-model:qariId="qariId"
-                v-model:translationId="translationId"
-                :qaries="qaries"
-            />
-        </v-app>
-    </v-locale-provider>
+    <Footer />
+    <Player
+        ref="player"
+        :url="srcAudio"
+        :title="playerTitle"
+        @ended="playerEnded"
+        @prevoius="playPrevoiusAyeh"
+        @next="playNextAyeh"
+        @repeat="repeat"
+        @linked="islinked"
+        v-model="player.playing"
+    />
+    <SurahSideBar
+        v-if="qaries"
+        v-model:modelValueAye="ayehFontSize"
+        v-model:modelValueMeaning="meaningFontSize"
+        v-model:qariId="qariId"
+        v-model:translationId="translationId"
+        :qaries="qaries"
+    />
 </template>
-<script>
+<script lang="ts">
 import SurahMatn from "@/components/SurahMatn.vue";
 import Footer from "@/components/Footer.vue";
 import SurahToolbar from "@/components/SurahToolbar.vue";

@@ -1,7 +1,7 @@
 <template>
-    <router-view />
+    <v-app>
+        <v-locale-provider rtl>
+            <router-view />
+        </v-locale-provider>
+    </v-app>
 </template>
-
-<script lang="ts" setup>
-//
-</script>

@@ -1,39 +1,42 @@
-// Composables
 import { createRouter, createWebHistory } from "vue-router";
+import DefaultLayout from "@/layouts/DefaultLayout.vue";
+import HomeView from "@/views/Home.vue";
+import ApiView from "@/views/Api.vue";
+import ContactusView from "@/views/Contact.vue";
+import SurahView from "@/views/Surah.vue";
+import PageView from "@/views/Page.vue";
 
 const routes = [
     {
         path: "/",
-        component: () => import("@/views/Home.vue"),
+        component: DefaultLayout,
         children: [
             {
                 path: "",
                 name: "Home",
-                component: () =>
-                    import(/* webpackChunkName: "home" */ "@/views/Home.vue"),
+                component: HomeView,
+            },
+            {
+                path: "contact-us",
+                name: "contact-us",
+                component: ContactusView,
+            },
+            {
+                path: "api",
+                name: "api",
+                component: ApiView,
             },
         ],
     },
-
     {
         path: "/surah/:surahNum",
         name: "surah",
-        component: () => import("@/views/Surah.vue"),
-    },
-    {
-        path: "/contact-us",
-        name: "contact-us",
-        component: () => import ("@/views/Contact.vue")
-    },
-    {
-        path: "/api",
-        name: "api",
-        component: () => import ("@/views/Api.vue")
+        component: SurahView,
     },
     {
         path: "/page/:pageNum",
         name: "page",
-        component: () => import ("@/views/Page.vue")
+        component: PageView
     }
 ];
 const router = createRouter({
