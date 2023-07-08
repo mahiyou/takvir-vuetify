@@ -29,14 +29,16 @@ const routes = [
         ],
     },
     {
-        path: "/surah/:surahNum",
+        path: "/surah/:surah",
         name: "surah",
         component: SurahView,
+        props: true
     },
     {
-        path: "/page/:pageNum",
+        path: "/page/:page",
         name: "page",
-        component: PageView
+        component: PageView,
+        props: true
     }
 ];
 const router = createRouter({

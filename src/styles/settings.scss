@@ -6,6 +6,7 @@
 
 // https://next.vuetifyjs.com/features/sass-variables/
 @use 'vuetify' with (
+    $body-font-family: ('IranSans', 'Tahoma', "Arial"),
     $typography: (
         'h1': ('letter-spacing': 0),
         'h2': ('letter-spacing': 0),

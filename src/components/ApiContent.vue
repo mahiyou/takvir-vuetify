@@ -5,22 +5,12 @@
             <v-col cols="6" class="py-5">
                 <v-menu open-on-click>
                     <template v-slot:activator="{ props }">
-                        <button v-bind="props" class="top-menu-title"
-                        >متد ها<v-icon>mdi-menu-down</v-icon>
-                        </button>
+                        <button v-bind="props" class="top-menu-title" append-icon="mdi-menu-down">متد ها</button>
                     </template>
                     <v-list>
                         <v-list-item>
                             <v-list density="compact" nav>
-                                <v-list-item
-                                    prepend-icon="mdi-chevron-left"
-                                    v-for="index in this.items.length"
-                                    :href="'#' + this.items[index - 1].value"
-                                    :key="index"
-                                    :title="this.items[index - 1].title"
-                                    :name="this.items[index - 1].value"
-                                    class="list-item-style"
-                                ></v-list-item>
+                                <v-list-item prepend-icon="mdi-chevron-left" v-for="({title, value}, key) in items" :href="'#' + value" :key="key" :title="title"  :name="value" class="list-item-style"></v-list-item>
                             </v-list>
                         </v-list-item>
                     </v-list>
@@ -34,8 +24,7 @@
             <v-divider class="my-4"></v-divider>
             <div>
                 <p>
-                    تمامی متد ها به صورت <span class="bold-word">GET</span> نوشته شده است
-                    .
+                    تمامی متد ها به صورت <span class="bold-word">GET</span> نوشته شده است.
                 </p>
                 <p>
                     در پایان هر متد ، نمونه ای از درخواست فرستاده شده و پاسخ دریافت شده ،
@@ -61,13 +50,13 @@
                     <p style="font-size: 18px; font-weight: 400" class="mt-3">
                         آدرس ارسالی
                     </p>
-                    <p class="address">https://takv.ir?api=1</p>
+                    <p class="address">{{ backendURL }}?api=1</p>
 
                     <p style="font-size: 18px; font-weight: 400" class="mt-8">
                         نمونه درخواست
                     </p>
                     <v-divider class="my-4"></v-divider>
-                    <p class="code-box">GET https://takv.ir?api=1</p>
+                    <p class="code-box">GET {{backendURL}}?api=1</p>
                     <p>پاسخ</p>
                     <pre class="code-box">
             <code>
@@ -109,13 +98,13 @@
                     <p style="font-size: 18px; font-weight: 400" class="mt-3">
                         آدرس ارسالی
                     </p>
-                    <p class="address">GET https://takv.ir/qaries?api=1</p>
+                    <p class="address">GET {{ backendURL }}qaries?api=1</p>
 
                     <p style="font-size: 18px; font-weight: 400" class="mt-8">
                         نمونه درخواست
                     </p>
                     <v-divider class="my-4"></v-divider>
-                    <p class="code-box">GET https://takv.ir?api=1</p>
+                    <p class="code-box">GET {{ backendURL }}?api=1</p>
                     <p>پاسخ</p>
                     <pre class="code-box">
             <code>
@@ -222,13 +211,13 @@
                         <p style="font-size: 18px; font-weight: 400" class="mt-3">
                             آدرس ارسالی
                         </p>
-                        <p class="address">https://takv.ir/surah/{SurahID}?api=1</p>
+                        <p class="address">{{ backendURL }}/surah/{SurahID}?api=1</p>
 
                         <p style="font-size: 18px; font-weight: 400" class="mt-8">
                             نمونه درخواست
                         </p>
                         <v-divider class="my-4"></v-divider>
-                        <p class="code-box">GET https://takv.ir/surah/1?api=1</p>
+                        <p class="code-box">GET {{ backendURL }}/surah/1?api=1</p>
                         <p>پاسخ</p>
                         <pre class="code-box">
             <code>			
@@ -634,13 +623,13 @@
                         <p style="font-size: 18px; font-weight: 400" class="mt-3">
                             آدرس ارسالی
                         </p>
-                        <p class="address">https://takv.ir/page/{PageNumber}?api=1</p>
+                        <p class="address">{{ backendURL }}/page/{PageNumber}?api=1</p>
 
                         <p style="font-size: 18px; font-weight: 400" class="mt-8">
                             نمونه درخواست
                         </p>
                         <v-divider class="my-4"></v-divider>
-                        <p class="code-box">GET https://takv.ir/page/2?api=1</p>
+                        <p class="code-box">GET {{ backendURL }}/page/2?api=1</p>
                         <p>پاسخ</p>
                         <pre class="code-box">
             <code>			
@@ -961,14 +950,14 @@
                             آدرس ارسالی
                         </p>
                         <p class="address">
-                            https://takv.ir/surah/{SurahID}/{AyahID}?api=1
+                            {{ backendURL }}/surah/{SurahID}/{AyahID}?api=1
                         </p>
 
                         <p style="font-size: 18px; font-weight: 400" class="mt-8">
                             نمونه درخواست
                         </p>
                         <v-divider class="my-4"></v-divider>
-                        <p class="code-box">GET https://takv.ir/surah/55/13?api=1</p>
+                        <p class="code-box">GET {{ backendURL }}/surah/55/13?api=1</p>
                         <p>پاسخ</p>
                         <pre class="code-box">
             <code>			
@@ -1065,13 +1054,13 @@
                         <p style="font-size: 18px; font-weight: 400" class="mt-3">
                             آدرس ارسالی
                         </p>
-                        <p class="address">https://takv.ir/search?word=term&api=1</p>
+                        <p class="address">{{ backendURL }}/search?word=term&api=1</p>
 
                         <p style="font-size: 18px; font-weight: 400" class="mt-8">
                             نمونه درخواست
                         </p>
                         <v-divider class="my-4"></v-divider>
-                        <p class="code-box">GET https://takv.ir/search?word=معارج&api=1</p>
+                        <p class="code-box">GET {{ backendURL }}/search?word=معارج&api=1</p>
                         <p>پاسخ</p>
                         <pre class="code-box">
             <code>			
@@ -1123,10 +1112,15 @@
         </div>
     </v-container>
 </template>
-<script>
+<script lang="ts">
 import { defineComponent } from "vue";
 
 export default defineComponent({
+    setup() {
+        return {
+            backendURL: import.meta.env.VITE_BACKEND_URL as string
+        };
+    },
     data() {
         return {
             items: [
@@ -1151,37 +1145,37 @@ export default defineComponent({
         },
     },
     methods: {
-        onIntersectStart(isIntersecting) {
+        onIntersectStart(isIntersecting: boolean) {
             if (isIntersecting) {
                 this.$emit("update:currentNavItem", "start");
             }
         },
-        onIntersectSurahs(isIntersecting) {
+        onIntersectSurahs(isIntersecting: boolean) {
             if (isIntersecting) {
                 this.$emit("update:currentNavItem", "get-surahs");
             }
         },
-        onIntersectQari(isIntersecting) {
+        onIntersectQari(isIntersecting: boolean) {
             if (isIntersecting) {
                 this.$emit("update:currentNavItem", "get-qaries");
             }
         },
-        onIntersectSurah(isIntersecting) {
+        onIntersectSurah(isIntersecting: boolean) {
             if (isIntersecting) {
                 this.$emit("update:currentNavItem", "get-surah");
             }
         },
-        onIntersectPage(isIntersecting) {
+        onIntersectPage(isIntersecting: boolean) {
             if (isIntersecting) {
                 this.$emit("update:currentNavItem", "get-page");
             }
         },
-        onIntersectAyeh(isIntersecting) {
+        onIntersectAyeh(isIntersecting: boolean) {
             if (isIntersecting) {
                 this.$emit("update:currentNavItem", "get-ayeh");
             }
         },
-        onIntersectSearch(isIntersecting) {
+        onIntersectSearch(isIntersecting: boolean) {
             if (isIntersecting) {
                 this.$emit("update:currentNavItem", "search");
             }
@@ -1191,12 +1185,6 @@ export default defineComponent({
         currentNavItem(newValue) {
             console.log(newValue);
             window.location.hash = newValue;
-            return;
-
-            document.getElementById(newValue).scrollIntoView({
-                block: "start",
-                behavior: "smooth",
-            });
         },
     },
 });

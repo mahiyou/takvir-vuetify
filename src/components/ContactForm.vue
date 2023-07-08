@@ -1,138 +1,78 @@
 <template>
     <v-container class="contact-container">
-        <div>
-            <p class="title">تماس با ما</p>
-        </div>
+        <h3 class="text-primary">تماس با ما</h3>
         <v-row>
             <v-col cols="6" offset="3">
-                <v-form validate-on="submit" @submit.prevent="submit" class="v-form-w">
-                    <div class="box-style f-b">
-                        <v-icon class="icon-style ml-3">mdi-email</v-icon>
-                        <input
-                            class="input-style"
-                            type="email"
-                            v-model="email"
-                            placeholder="آدرس ایمیل"
-                        />
+                <v-form v-model="valid" @submit.prevent="onSubmit">
+                    <v-text-field
+                        variant="outlined"
+                        type="email"
+                        v-model="email"
+                        prepend-inner-icon="mdi-email"
+                        label="آدرس ایمیل"
+                        :rules="[validateEmail]"
+                    />
+                    <v-text-field
+                        variant="outlined"
+                        type="text"
+                        prepend-inner-icon="mdi-comment-processing-outline"
+                        v-model="subject"
+                        label="موضوع"
+                    />
+                    <v-textarea label="متن نظر" variant="outlined" prepend-inner-icon="mdi-comment-outline"></v-textarea>
+            
+                    <div class="text-left">
+                        <v-btn type="submit" color="primary" class="mt-2" :loading="loading" :disabled="loading || !valid" prepend-icon="mdi-send-outline">ارسال</v-btn>
                     </div>
-
-                    <div class="box-style">
-                        <v-icon class="icon-style ml-3"
-                        >mdi-comment-processing-outline</v-icon
-                        >
-                        <input
-                            class="input-style"
-                            type="text"
-                            v-model="subject"
-                            placeholder="موضوع"
-                        />
-                    </div>
-                    <div class="box-style">
-                        <v-row>
-                            <v-col cols="1">
-                                <v-icon class="icon-style">mdi-comment-outline</v-icon></v-col
-                            >
-                            <v-col cols="11" class="px-0">
-                                <textarea
-                                    class="input-style"
-                                    placeholder="متن نظر"
-                                    v-model="content"
-                                    style="width: 97%"
-                                ></textarea>
-                            </v-col>
-                        </v-row>
-                    </div>
-                    <v-btn type="submit" class="mt-2 float-left btn-style"
-                    ><v-icon class="ml-1">mdi-send-outline</v-icon>ارسال</v-btn
-                    >
                 </v-form>
             </v-col>
         </v-row>
     </v-container>
 </template>
-<script>
-export default {
-    data: () => ({
-        subject: "",
-        content:"",
-        email: "",
-        emailRules: [
-            (value) => {
-                if (value) return true;
+<script lang="ts">
+import { defineComponent } from 'vue';
 
-                return "E-mail is requred.";
-            },
-            (value) => {
-                if (/.+@.+\..+/.test(value)) return true;
-
-                return "E-mail must be valid.";
-            },
-        ],
-    }),
+export default defineComponent({
+    data(){
+        return {
+            subject: "",
+            content: "",
+            email: "",
+            valid: false,
+            loading: false,
+        };
+    },
     methods: {
-        submit() {
-            fetch("https://takv.ir/contact-us?ajax=1", {
-                method: "POST",
-                body: JSON.stringify({
-                    subject: this.subject,
-                    email: this.email,
-                    content:this.content,
-                    //   status: true,
-                }),
-                // headers: {
-                //   "Content-type": "application/json; charset=UTF-8",
-                // },
-            });
+        validateEmail(value: string) {
+            if (!value) {
+                return "ورود ایمیل اجباری می‌باشد.";
+            }
+            if (!/.+@.+\..+/.test(value)) {
+                return "ایمیل شما معتبر نمی‌باشد";
+            }
+            return true;
+        },
+        async onSubmit(){
+            if (!this.valid || this.loading) {
+                return;
+            }
+            this.loading = true;
+            try {
+                const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/contact-us?ajax=1`, {
+                    method: "POST",
+                    body: JSON.stringify({
+                        subject: this.subject,
+                        email: this.email,
+                        content: this.content,
+                    }),
+                });
+            } catch (e) {
+                // TODO
+            } finally {
+                this.loading = false;
+            }
+            
         },
     },
-};
+});
 </script>
-<style lang="scss">
-.contact-container {
-  margin-bottom: 40px;
-  .title {
-    font-size: 28px;
-    color: gray;
-    font-family: yakan;
-    font-weight: 500;
-  }
-
-  .box-style {
-    background: white;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    width: 100%;
-    padding: 10px;
-    margin: 10px;
-
-    // &:focus {
-    //   border-color: #66afe9;
-    //   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075),
-    //     0 0 8px rgba(102, 175, 233, 0.6);
-    //   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075),
-    //     0 0 8px rgba(102, 175, 233, 0.6);
-    // }
-    .icon-style {
-      color: #2ca4ab;
-      margin: 0px;
-    }
-  }
-  .v-form-w {
-    padding: 20px;
-  }
-  .btn-style {
-    background: #2ca4ab;
-    color: white;
-  }
-  .input-style {
-    color: gray;
-    font-family: yekan;
-    font-size: 14px;
-    width: 80%;
-    &:focus {
-      outline: 0;
-    }
-  }
-}
-</style>

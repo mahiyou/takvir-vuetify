@@ -2,36 +2,31 @@
     <section class="player">
         <div>
             <v-slider
-                id="slider"
-                class="sliderStyle"
-                v-model="currentTime"
+                :model-value="currentTime"
+                :on-update:model-value="changeCurrentTime"
                 color="mygreen"
                 :max="duration"
-                @click="changCurrentTime"
+                :hide-details="true"
             ></v-slider>
         </div>
-        <ul class="controller">
-            <li class="controller-icon">{{ persianNumber(title) }}</li>
-            <li class="controller-icon" @click="next">
-                <v-icon>mdi-step-forward</v-icon>
-            </li>
-            <li class="controller-icon" @click="togglePlay">
-                <v-icon>{{ playIcon }}</v-icon>
-            </li>
-            <li class="controller-icon" @click="prevoius">
-                <v-icon>mdi-step-backward</v-icon>
-            </li>
-            <li class="controller-icon" @click="repeat">
-                <v-icon>{{ repeatIcon }}</v-icon>
-            </li>
-            <li class="controller-icon" @click="linked">
-                <v-icon :color="linkIcon">mdi-link</v-icon>
-            </li>
-        </ul>
+        <div class="text-center">
+            <span class="px-3">{{ title }}</span>
+            <v-btn variant="text" icon="mdi-step-forward" @click="onNextClick" />
+            <v-btn variant="text" :icon="playIcon" @click="togglePlay" />
+            <v-btn variant="text" icon="mdi-step-backward" @click="onPrevoiusClick" />
+            <v-btn variant="text" :icon="repeatIcon" @click="onRepeatClick" />
+            <v-btn variant="text" icon="mdi-link" @click="onLinkClick" :color="linkIconColor" />
+        </div>
     </section>
 </template>
-<script>
+<script lang="ts">
+import { PropType } from "vue";
 import { defineComponent } from "vue";
+export enum RepeatMode {
+    REPEAT_OFF,
+    REPEAT_TRACK,
+    REPEAT_LIST,
+}
 export default defineComponent({
     props: {
         title: {
@@ -46,6 +41,14 @@ export default defineComponent({
             type: Boolean,
             required: true,
         },
+        repeat: {
+            type: Number as PropType<RepeatMode>,
+            default: RepeatMode.REPEAT_OFF,
+        },
+        linked: {
+            type: Boolean,
+            default: true,
+        }
     },
     emits: [
         "started",
@@ -53,30 +56,32 @@ export default defineComponent({
         "prevoius",
         "ended",
         "update:modelValue",
-        "repeat",
-        "linked",
+        "update:repeat",
+        "update:linked",
     ],
+    unmounted() {
+        this.audio?.pause();
+        this.audio = undefined;
+    },
     data() {
         return {
-            audio: undefined,
-            islinked: false,
+            audio: undefined as (HTMLAudioElement | undefined),
             currentTime: 0,
-            duration: undefined,
+            duration: 0,
             repeatMoods: [
                 {
-                    state: "repeatOff",
+                    state: RepeatMode.REPEAT_OFF,
                     icon: " mdi-repeat-off",
                 },
                 {
-                    state: "repeatTrack",
+                    state: RepeatMode.REPEAT_TRACK,
                     icon: "mdi-repeat-once",
                 },
                 {
-                    state: "repeatList",
+                    state: RepeatMode.REPEAT_LIST,
                     icon: "mdi-repeat",
                 },
             ],
-            repeatState: 0,
         };
     },
     methods: {
@@ -90,10 +95,10 @@ export default defineComponent({
         setupAudio() {
             this.audio = new Audio(this.url);
             this.audio.addEventListener("timeupdate", () => {
-                this.currentTime = this.audio.currentTime;
+                this.currentTime = this.audio?.currentTime || 0;
             });
             this.audio.addEventListener("durationchange", () => {
-                this.duration = this.audio.duration;
+                this.duration = this.audio?.duration || 0;
             });
             this.audio.addEventListener("ended", () => {
                 this.$emit("update:modelValue", false);
@@ -104,7 +109,7 @@ export default defineComponent({
             if (!this.audio) {
                 this.setupAudio();
             }
-            this.audio.play();
+            this.audio?.play();
             this.$emit("update:modelValue", true);
         },
         pause() {
@@ -115,44 +120,24 @@ export default defineComponent({
             this.audio.pause();
         },
 
-        prevoius() {
+        onPrevoiusClick() {
             this.$emit("prevoius");
         },
-        next() {
+        onNextClick() {
             this.$emit("next");
         },
-        linked() {
-            this.islinked = !this.islinked;
-            this.$emit("linked", this.islinked);
+        onLinkClick(): void {
+            this.$emit("update:linked", !this.linked);
         },
 
-        repeat() {
-            if (this.repeatState < 2) {
-                this.repeatState++;
-            } else {
-                this.repeatState = 0;
-            }
-
-            this.$emit("repeat", this.repeatMoods[this.repeatState].state);
+        onRepeatClick(): void {
+            this.$emit("update:repeat", (this.repeat + 1) % 3);
         },
-        changCurrentTime() {
-            if (document.getElementById("slider").value != this.audio.currentTime) {
-                this.audio.currentTime = document.getElementById("slider").value;
+        changeCurrentTime(newValue: number) {
+            if (!this.audio) {
+                return;
             }
-        },
-        persianNumber(n) {
-            n = n.toString();
-            const nlength = n.length;
-            const farsiNum = ["۰", "۱", "۲", "۳", "۴", "۵", "۶", "۷", "۸", "۹"];
-
-            for (let i = 0; i < 10; i++) {
-                for (let j = 0; j < nlength; j++) {
-                    const istring = i.toString();
-                    n = n.replace(istring, farsiNum[i]);
-                }
-            }
-
-            return n;
+            this.audio.currentTime = newValue;
         },
     },
     computed: {
@@ -160,10 +145,10 @@ export default defineComponent({
             return this.modelValue ? "mdi-pause" : "mdi-play";
         },
         repeatIcon() {
-            return this.repeatMoods[this.repeatState].icon;
+            return this.repeatMoods[this.repeat].icon;
         },
-        linkIcon() {
-            return this.islinked ? "blue-darken-2" : "";
+        linkIconColor() {
+            return this.linked ? "blue-darken-2" : undefined;
         },
     },
     watch: {
