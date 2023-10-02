@@ -1,4 +1,4 @@
-# Bonbaz
+# Takvir
 
 <p align="center">
 <img src="https://github.com/mahiyou/takvir-vuetify/blob/master/misc/first-page.jpg" width="250" text-align-center>
